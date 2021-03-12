@@ -1,6 +1,10 @@
 const mysql = require("mysql");
 const inq = require("inquirer");
 const table = require("console.table");
+const add = require("./lib/add");
+const update = require("./lib/update");
+const view = require("./lib/view");
+
 
 
 const connection = mysql.createConnection({
@@ -13,10 +17,11 @@ const connection = mysql.createConnection({
 
 connection.connect(function (err) {
     if (err) throw err;
-    askFirstQuestions();
+    console.log("connected as id " + connection.theadId + "\n");
+    exports.askFirstQuestions();
 });
 
-function askFirstQuestions() {
+exports.askFirstQuestions = () => {
     inq.prompt([
         {
             type: "list",
